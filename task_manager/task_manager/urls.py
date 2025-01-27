@@ -1,11 +1,13 @@
 from django.urls import path, include # type: ignore
 from django.contrib.auth.views import LogoutView # type: ignore
-from tasks import views
+from django.contrib import messages # type: ignore
 from django.shortcuts import redirect # type: ignore
+from tasks import views
 
 urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('', lambda request: redirect('login')),
+    path('register/', views.register, name='register'),
 
     path('home/', views.home, name='home'),  # Adiciona a página inicial
     

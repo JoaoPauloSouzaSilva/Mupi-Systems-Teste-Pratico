@@ -1,8 +1,20 @@
 from django.shortcuts import render, redirect, get_object_or_404 # type: ignore
 from django.contrib.auth.decorators import login_required # type: ignore
+from django.contrib.auth.forms import UserCreationForm # type: ignore
+from django.contrib import messages # type: ignore
 from .models import Task
 from .forms import TaskForm
 from .forms import CustomTaskForm
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')  # Redireciona para a página de login após o registro
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration/register.html', {'form': form})
 
 @login_required
 def home(request):
@@ -25,6 +37,7 @@ def task_create(request):
             task = form.save(commit=False)
             task.user = request.user
             task.save()
+            messages.success(request, "Tarefa criada com sucesso!")
             return redirect('home')  # Redireciona para a página inicial
     else:
         form = CustomTaskForm()
@@ -40,6 +53,7 @@ def task_update(request, pk):
         form = CustomTaskForm(request.POST, instance=task)
         if form.is_valid():
             form.save()
+            messages.success(request, "Tarefa atualizada com sucesso!")
             return redirect('home')  # Redireciona para a página inicial
     else:
         # Preenche o formulário com os dados existentes da tarefa
@@ -54,6 +68,7 @@ def task_delete(request, pk):
 
     if request.method == 'POST':
         task.delete()  # Deleta a tarefa do banco de dados
+        messages.success(request, "Tarefa excluída com sucesso!")
         return redirect('home')  # Redireciona para a página inicial
 
     return render(request, 'tasks/task_confirm_delete.html', {'task': task})

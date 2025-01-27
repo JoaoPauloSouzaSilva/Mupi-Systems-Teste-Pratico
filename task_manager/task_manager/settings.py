@@ -50,6 +50,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# Configuração para o sistema de mensagens
+from django.contrib.messages import constants as messages # type: ignore
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',  # Define a classe CSS para mensagens de erro
+}
+
 ROOT_URLCONF = 'task_manager.urls'
 
 TEMPLATES = [

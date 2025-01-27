@@ -59,7 +59,7 @@
         <h1>Login</h1>
         {{ form.as_p }}
         <button type="submit">Entrar</button>
-        <a href="{% url 'password_reset' %}">Esqueceu sua senha?</a>
     </form>
+    <p>Não tem uma conta? <a href="{% url 'register' %}">Crie uma conta</a></p>
 </body>
 </html>

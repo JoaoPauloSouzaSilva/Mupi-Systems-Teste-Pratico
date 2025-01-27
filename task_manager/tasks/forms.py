@@ -1,4 +1,6 @@
 from django import forms # type: ignore
+from django.utils import timezone # type: ignore
+from django.core.exceptions import ValidationError # type: ignore
 from .models import Task
 
 class CustomTaskForm(forms.ModelForm):
@@ -23,8 +25,9 @@ class CustomTaskForm(forms.ModelForm):
 
     def clean_due_date(self):
         due_date = self.cleaned_data.get('due_date')
-        if due_date is None:
-            raise forms.ValidationError("A data de vencimento é obrigatória.")
+
+        if due_date <= timezone.now():
+            raise ValidationError("A data de prazo não pode ser no passado.")
         return due_date
 
 class TaskForm(forms.ModelForm):
