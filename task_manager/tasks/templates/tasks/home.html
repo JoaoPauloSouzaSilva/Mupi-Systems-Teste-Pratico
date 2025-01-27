@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Inicial</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'task_create' %}">Criar Tarefa</a></li>
+                <li>
+                    <form method="post" action="{% url 'logout' %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-link" style="text-decoration:none; color:inherit;">Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    
+    <h1>Bem-vindo(a), {{ user.username }}!</h1>
+
+    <h2>Tarefas Pendentes</h2>
+    <ul>
+        {% for task in pending_tasks %}
+            <li>
+                <strong>Título:</strong> {{ task.title }}<br>
+                <strong>Descrição:</strong> {{ task.description }}<br>
+                <strong>Prazo:</strong> {{ task.due_date|date:"d/m/Y H:i" }}<br>
+                <strong>Criada em:</strong> {{ task.created_at|date:"d/m/Y H:i" }}<br>
+                <a href="{% url 'task_update' task.pk %}">Editar</a>
+                <a href="{% url 'task_delete' task.pk %}">Excluir</a>
+                <form method="post" action="{% url 'task_mark_complete' task.pk %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success">Marcar como Concluída</button>
+                </form>
+            </li>
+            <hr>
+        {% empty %}
+            <li>Não há tarefas pendentes.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Tarefas Concluídas</h2>
+    <ul>
+        {% for task in completed_tasks %}
+            <li>
+                <strong>Título:</strong> {{ task.title }}<br>
+                <strong>Descrição:</strong> {{ task.description }}<br>
+                <strong>Prazo:</strong> {{ task.due_date|date:"d/m/Y H:i" }}<br>
+                <strong>Criada em:</strong> {{ task.created_at|date:"d/m/Y H:i" }}<br>
+                <a href="{% url 'task_update' task.pk %}">Editar</a>
+                <a href="{% url 'task_delete' task.pk %}">Excluir</a>
+            </li>
+            <hr>
+        {% empty %}
+            <li>Não há tarefas concluídas.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

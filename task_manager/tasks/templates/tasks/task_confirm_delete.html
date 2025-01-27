@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Deletar Tarefa{% endblock %}
+
+{% block content %}
+<h1>Tem certeza de que deseja deletar esta tarefa?</h1>
+
+<ul>
+    <li><strong>Título:</strong> {{ task.title }}</li>
+    <li><strong>Descrição:</strong> {{ task.description }}</li>
+    <li><strong>Prazo:</strong> {{ task.due_date|date:"d/m/Y H:i" }}</li>
+    <li><strong>Criada em:</strong> {{ task.created_at|date:"d/m/Y H:i" }}</li>
+    <li><strong>Concluída:</strong> {% if task.completed %}Sim{% else %}Não{% endif %}</li>
+</ul>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Deletar</button>
+    <a href="{% url 'home' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}
