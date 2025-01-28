@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Criar Conta</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'tasks/css/login.css' %}">
+    <link rel="icon" href="{% static 'tasks/images/favicon.ico' %}" type="image/x-icon">
+    {% block extra_css %}{% endblock %}
 </head>
 <body>
     <h1>Criar Conta</h1>

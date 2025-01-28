@@ -1,0 +1,71 @@
+@import url('base.css');
+
+.container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-family);
+  color: var(--text-color);
+}
+
+.title {
+  font-size: 2rem;
+  border-bottom: solid 0.2rem var(--primary-color);
+}
+
+ul{
+  list-style: none;
+  background-color: var(--white-color);
+  border-radius: 0.8rem;
+  border: solid 0.1rem var(--secondary-color);
+  width: 40%;
+  margin: 0 0 1% 0;
+  padding: 2%;
+  box-shadow: 0 0.1rem 0.2rem var(--shadow-color);
+}
+
+li{
+  margin: 3% 0;
+  color: var(--text-color);
+  font-size: 1.1rem;
+}
+
+strong{
+  font-family: var(--font-family);
+  font-size: 1.2rem;
+}
+
+.font-number {
+  font-family: var(--number-fonte);
+}
+
+form{
+  width: 23%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn {
+  color: var(--text-color);
+  box-shadow:  0 0.1rem 0.2rem var(--shadow-color);
+  text-decoration: none;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 0.4rem;
+  font-weight: 500;
+  border: solid 0.15rem var(--border-color);
+  padding: 2% 5%;
+  margin-bottom: 3%;
+}
+
+.btn-danger {
+  background-color: var(--primary-color);
+  cursor: pointer;
+  padding: 2% 10%;
+}
+

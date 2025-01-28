@@ -14,7 +14,9 @@ urlpatterns = [
     path('create/', views.task_create, name='task_create'),
     path('<int:pk>/edit/', views.task_update, name='task_update'),
     path('<int:pk>/delete/', views.task_delete, name='task_delete'),
-     path('<int:pk>/complete/', views.task_mark_complete, name='task_mark_complete'),
+    path('<int:pk>/complete/', views.task_mark_complete, name='task_mark_complete'),
+    path('unmark/<int:pk>/', views.task_unmark_complete, name='task_unmark_complete'),
+
 
      # Logout configurado para aceitar métodos GET
     path('logout/', LogoutView.as_view(next_page='/accounts/login/'), name='logout'),

@@ -1,0 +1,162 @@
+@import url('base.css');
+
+.container{
+  width: 95%;
+  margin: 0% 2.5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: var(--font-family);
+}
+
+.tite-home {
+  padding: 0%;
+  margin: 0%;
+  text-align: center;
+  font-size: 2rem;
+  margin: 1.5% 0% 0% 0%;
+}
+
+/* Criar Tarefa */
+.btn-criar-tarefa{
+  width: 13%;
+  background-color: var(--primary-color);
+  margin: 0%;
+  margin-bottom: 2%;
+  padding: 0.6%;
+  border-radius: 0.6rem;
+  border: solid 0.16rem var(--border-color);
+  box-shadow: 0.08rem 0.1rem 0.2rem var(--shadow-color);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer; 
+}
+
+.btn-criar-tarefa:hover{
+  background-color: var(--primary-color-hover);
+}
+
+.link-criar-tarefa{
+  text-decoration: none;
+  color: var(--text-color);
+  font-family: var(--font-family);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.icon-criar-tarefa{
+  width: 16%;
+  margin-left: 3%;
+}
+
+.title-section{
+  padding: 0%;
+  margin: 0%;
+  font-size: 1.5rem;
+  background-color: var(--gray-color);
+  padding: 0.8%;
+  border-radius: 0.5rem;
+  border: solid 0.1rem var(--gray-border-color);
+}
+
+/* Container para os cards */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+  gap: 1.5rem; 
+  margin-top: 1.5rem;
+}
+
+/* Card individual */
+.card {
+  background-color: var(--white-color);
+  border: 0.1rem solid var(--gray-border-color);
+  border-radius: 0.8rem;
+  box-shadow: 0 0.1rem 0.3rem var(--shadow-color);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Efeito ao passar o mouse sobre o card */
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0.4rem 0.8rem var(--shadow-color);
+}
+
+/* Título do card */
+.card h3 {
+  font-size: 1.5rem;
+  color: var(--text-color);
+  border-bottom: solid 0.15rem var(--primary-color);
+  margin: 0.5rem 0;
+}
+
+/* Conteúdo do card */
+.card p {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+  color: var(--text-color);
+}
+
+.p-number{
+  font-family: var(--number-fonte);
+}
+
+strong{
+  font-family: var(--font-family);
+}
+
+/* Ações do card */
+.card-actions {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* Botão de Concluir */
+.btn-action {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border: none;
+  padding: 0.5rem ;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  box-shadow: 0 0.1rem 0.2rem var(--shadow-color);
+  border: solid 0.1rem var(--border-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+}
+
+.btn-update{
+  background-color: var(--btn-edit-color);
+}
+
+.btn-delete{
+  background-color: var(--btn-delete-color);
+}
+
+.img-btn-action{
+  width: 70%;
+}
+
+.btn-complete:hover {
+  background-color: var(--primary-color-hover);
+}
+
+.list-ampty{
+  opacity: 0.6;
+  text-align: center;
+}
+
+.card-complet{
+  opacity: 0.8;
+}

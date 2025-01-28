@@ -1,45 +1,70 @@
 {% extends "base.html" %}
+{% load static %}
 
-{% block title %}Página Inicial{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'tasks/css/home.css' %}">
+{% endblock %}
 
 {% block content %}
-<h1>Bem-vindo(a), {{ user.username }}!</h1>
+<div class="container">
+    <h1 class="tite-home">Bem-vindo(a), {{ user.username }}!</h1>
+    
+    <a class="btn-criar-tarefa link-criar-tarefa" href="{% url 'task_create' %}">Criar Tarefa <img class="icon-criar-tarefa" src="{% static 'tasks/images/PlusCircle.svg' %}" alt="Icone Mais"></a>
 
-<h2>Tarefas Pendentes</h2>
-<ul>
-    {% for task in pending_tasks %}
-        <li>
-            <strong>Título:</strong> {{ task.title }}<br>
-            <strong>Descrição:</strong> {{ task.description }}<br>
-            <strong>Prazo:</strong> {{ task.due_date|date:"d/m/Y H:i" }}<br>
-            <strong>Criada em:</strong> {{ task.created_at|date:"d/m/Y H:i" }}<br>
-            <a href="{% url 'task_update' task.pk %}">Editar</a>
-            <a href="{% url 'task_delete' task.pk %}">Excluir</a>
-            <form method="post" action="{% url 'task_mark_complete' task.pk %}" style="display:inline;">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-success">Marcar como Concluída</button>
-            </form>
-        </li>
-        <hr>
-    {% empty %}
-        <li>Não há tarefas pendentes.</li>
-    {% endfor %}
-</ul>
-
-<h2>Tarefas Concluídas</h2>
-<ul>
-    {% for task in completed_tasks %}
-        <li>
-            <strong>Título:</strong> {{ task.title }}<br>
-            <strong>Descrição:</strong> {{ task.description }}<br>
-            <strong>Prazo:</strong> {{ task.due_date|date:"d/m/Y H:i" }}<br>
-            <strong>Criada em:</strong> {{ task.created_at|date:"d/m/Y H:i" }}<br>
-            <a href="{% url 'task_update' task.pk %}">Editar</a>
-            <a href="{% url 'task_delete' task.pk %}">Excluir</a>
-        </li>
-        <hr>
-    {% empty %}
-        <li>Não há tarefas concluídas.</li>
-    {% endfor %}
-</ul>
-{% endblock %}
+    <h2 class="title-section">Tarefas Pendentes</h2>
+    <div class="card-grid">
+        {% for task in pending_tasks %}
+        <div class="card">
+            <h3>{{ task.title }}</h3>
+            <p><strong>Descrição:</strong> {{ task.description }}</p>
+            <p class="p-number"><strong>Prazo:</strong> {{ task.due_date|date:"d/m/Y H:i" }}</p>
+            <p class="p-number"><strong>Criada em:</strong> {{ task.created_at|date:"d/m/Y H:i" }}</p>
+            <div class="card-actions">
+                <form method="post" action="{% url 'task_mark_complete' task.pk %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-action">
+                        <img class="img-btn-action" src="{% static 'tasks/images/Square.svg' %}" alt="Check box">
+                    </button>
+                </form>
+                <a class="btn-action btn-update" href="{% url 'task_update' task.pk %}">
+                    <img class="img-btn-action" src="{% static 'tasks/images/PencilSimple.svg' %}" alt="lapis">
+                </a>
+                <a class="btn-action btn-delete" href="{% url 'task_delete' task.pk %}">
+                    <img class="img-btn-action" src="{% static 'tasks/images/Trash.svg' %}" alt="Lixiera">
+                </a>
+            </div>
+        </div>
+        {% empty %}
+        <p class="list-ampty">Não há tarefas pendentes.</p>
+        {% endfor %}
+    </div>
+    
+    <h2 class="title-section" style="margin-top: 4%;">Tarefas Concluídas</h2>
+    <div class="card-grid">
+        {% for task in completed_tasks %}
+        <div class="card ">
+            <h3 class="card-complet">{{ task.title }}</h3>
+            <p class="card-complet"><strong>Descrição:</strong> {{ task.description }}</p>
+            <p class="p-number card-complet"><strong>Prazo:</strong> {{ task.due_date|date:"d/m/Y H:i" }}</p>
+            <p class="p-number card-complet"><strong>Criada em:</strong> {{ task.created_at|date:"d/m/Y H:i" }}</p>
+            <div class="card-actions">
+                <form method="post" action="{% url 'task_unmark_complete' task.pk %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-action">
+                        <img class="img-btn-action" src="{% static 'tasks/images/CheckSquare.svg' %}" alt="Checked box">
+                    </button>
+                </form>
+                <a class="btn-action btn-update" href="{% url 'task_update' task.pk %}">
+                    <img class="img-btn-action" src="{% static 'tasks/images/PencilSimple.svg' %}" alt="lapis">
+                </a>
+                <a class="btn-action btn-delete " href="{% url 'task_delete' task.pk %}">
+                    <img class="img-btn-action" src="{% static 'tasks/images/Trash.svg' %}" alt="Lixiera">
+                </a>
+            </div>
+        </div>
+        {% empty %}
+        <p class="list-ampty">Não há tarefas concluídas.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %} 

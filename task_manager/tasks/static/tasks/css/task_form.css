@@ -1,0 +1,64 @@
+@import url('base.css');
+
+.container-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-family: var(--font-family);
+  color: var(--text-color);
+}
+
+.title_form {
+  font-size: 2rem;
+  /* border-bottom: solid 0.19rem var(--primary-color); */
+}
+
+.form {
+  width: 30%;
+  background-color: var(--white-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2%;
+  border: solid 0.18rem var(--gray-color);
+  border-radius: 0.8rem;
+  box-shadow:  0 0.1rem 0.2rem var(--shadow-color);
+}
+
+.campo {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 3%;
+}
+
+label{
+  font-size: 1.3rem;
+  font-weight: 400;
+  padding: 2%;
+}
+
+.btn-save {
+  margin-top: 5%;
+  width: 40%;
+  padding: 2%;
+  border-radius: 0.5rem;
+  border: solid 0.14rem var(--border-color);
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  font-family: var(--font-family);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.link-home {
+  color: var(--alert-warning-text-color);
+  margin-top: 1%;
+}
+

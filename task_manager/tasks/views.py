@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404 # type: ignore
 from django.contrib.auth.decorators import login_required # type: ignore
 from django.contrib.auth.forms import UserCreationForm # type: ignore
 from django.contrib import messages # type: ignore
+from django.utils.timezone import now  # type: ignore
 from .models import Task
 from .forms import TaskForm
 from .forms import CustomTaskForm
@@ -80,3 +81,20 @@ def task_mark_complete(request, pk):
     task.completed = True  # Marca a tarefa como concluída
     task.save()
     return redirect('home')  # Redireciona para a página inicial
+
+@login_required
+def task_unmark_complete(request, pk):
+
+    task = get_object_or_404(Task, pk=pk, user=request.user)
+
+    # Verificar se a tarefa está atrasada
+    if task.due_date and task.due_date < now():
+        messages.error(request, "Você não pode desmarcar uma tarefa atrasada.")
+        return redirect("home")
+
+    # Desmarcar como concluída
+    task.completed = False
+    task.save()
+    messages.success(request, "Tarefa desmarcada como concluída com sucesso.")
+    return redirect("home")
+
