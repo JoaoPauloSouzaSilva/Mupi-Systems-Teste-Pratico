@@ -29,13 +29,4 @@ class CustomTaskForm(forms.ModelForm):
         if due_date <= timezone.now():
             raise ValidationError("A data de prazo não pode ser no passado.")
         return due_date
-
-class TaskForm(forms.ModelForm):
-    class Meta:
-        model = Task
-        fields = ['title', 'description', 'due_date', 'completed']
-        widgets = {
-            'due_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
-        }
-
         

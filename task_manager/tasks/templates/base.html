@@ -24,10 +24,7 @@
         </form>
     </header>
 
-   
-
     <main>
-        <!-- Mensagens de Feedback -->
         <div class="alert-container">
             {% if messages %}
                 {% for message in messages %}
@@ -37,14 +34,11 @@
                 {% endfor %}
             {% endif %}
         </div>        
-        
-        <!-- Conteúdo Dinâmico -->
         {% block content %}{% endblock %}
     </main>
 
     <script>
         const alerts = document.querySelectorAll('.alert');
-        
         alerts.forEach((alert) => {
             setTimeout(() => {
                 alert.style.opacity = '0';
